@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#myDIV {
+  width: 30%;
+  padding: 20px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+#myDIV2 {
+  width: 30%;
+  padding: 20px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+</style>
+</head>
+<body onload="myFunction()">
+
+<p>Click the "Try it" button to toggle between hiding and showing the DIV element:</p>
+
+<a onclick="myFunction()" cursor="pointer">Login</a>
+
+<div id="myDIV" display:none>
+<form method="POST">
+  <label for="fname">Username:</label>
+  <input type="text" id="fname" name="userName"><br>
+  <label for="lname">Password:</label>
+  <input type="text" id="lname" name="Password"><br>
+  <input type="submit" value="Submit">
+</form>
+</div>
+
+<div id="myDIV2" display:none>
+  <form method="POST">
+    <input type="submit" value="logout">
+  </form>
+  </div>
+
+<p><b>Note:</b> The element will not take up any space when the display property set to "none".</p>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  var y = document.getElementById("myDIV2");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none";
+  } else {
+    x.style.display = "none";
+    y.style.display = "block";
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,718 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <script src="../static/js/scripts.js"></script>
+    <link rel="shortcut icon" href="../static/assets/favicon.png" type="image/x-icon">
+    <title>Forum | Home</title>
+</head>
+<body>
+    <!-- the wrapper is to ensure everything is centered inside (flex) -->
+    <div class="wrapper">
+        <!-- seperated into four sections: navbar, left panel, mid section & right panel  -->
+        <div class="content">
+
+            <!-- NAVBAR -->
+            <!-- this is to ensure everything is centered inside -->
+            <div class="nav-wrapper">
+                <!-- seperated into two sections: logo (left) & button (right) -->
+                <div class="nav-content">
+                    <!-- this will be on the left side -->
+                    <div class="logo">
+                        <a href="/">
+                            <img src="../static/assets/navbar/logo.svg">
+                        </a>
+                    </div>
+                    {{if .SignedInUser}}
+                    <div class="welcome-text">Welcome, {{.SignedInUser}}!</div>
+                    {{end}}
+                    <!-- this will be on the right side -->
+                    {{if .SignedInUser}}
+                    <div class="btn-login">
+                        <a href="logout">
+                            <img src="../static/assets/navbar/btn-logout.svg" alt="logout button">
+                        </a>
+                    </div>
+                    {{else}}
+                    <div class="btn-login">
+                        <a href="login">
+                            <img src="../static/assets/navbar/btn-login.svg" alt="login button">
+                        </a>
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+
+            <div class="sections">
+
+                <!-- LEFT PANEL -->
+                <div class="left-panel">
+
+                    <!-- dashboard btn -->
+                    <div class="btn dashboard">
+                        <div class="btn-dashboard">
+                            <a href="/">
+                                <img src="../static/assets/left-panel/btn-dashboard.svg" alt="Image of Home Page">
+                            </a>
+                        </div>
+                        <a href="/" class="btn-text">Dashboard</a>
+                    </div>
+
+                    <!-- filter by posts -->
+                    <div class="filter-posts">
+                        <div class="btn-text">Filter by Posts&nbsp&nbsp^</div>
+                    </div>
+
+                    <!-- your posts -->
+                    <div class="btn">
+                        <div class="btn-dashboard">
+                            <a href="#">
+                                <img src="../static/assets/left-panel/btn-your-posts.svg" alt="">
+                            </a>
+                        </div>
+                        <a href="yourPosts" class="btn-text">Your Posts</a>
+                    </div>
+
+                    <!-- your liked -->
+                    <div class="btn">
+                        <div class="btn-dashboard">
+                            <a href="#">
+                                <img src="../static/assets/left-panel/btn-liked-posts.svg" alt="">
+                            </a>
+                        </div>
+                        <a href="#" class="btn-text">Your Liked Posts</a>
+                    </div>
+
+                    <!-- filter by category -->
+                    <div class="filter-posts">
+                        <div class="btn-text">Filter by Category&nbsp&nbsp^</div>
+                    </div>
+
+                    <!-- categories -->
+                    <!-- to format each button horizontally using display: flex -->
+                    <div class="categories">
+                        <div class="category technology">{{.CatName1}}</div>
+                        <div class="category food">{{.CatName2}}</div>
+                        <div class="category sports">{{.CatName3}}</div>
+                        <div class="category travel">{{.CatName4}}</div>
+                        <div class="category miscellaneous">{{.CatName5}}</div>
+                    </div>
+
+                </div>
+
+                <!-- MID SECTION -->
+                <div class="mid-section">
+                    <!-- wrapper used for centering info-box -->
+                    <div class="info-wrapper">
+
+                        <!-- <div class="info-box">
+                            <info-text>In order to interact with posts, please login or create an account <a href="#">here.</a></info-text>
+                        </div> -->
+
+                    <form action="postcreate" name="postFrm" onsubmit="getChkBoxValue()">
+
+                        <!-- Create A Post/Title -->
+                        <div class="info-box">
+                            <input name="title" id="title" type="text" placeholder="Post title...">
+                            <div class="plus">
+                                <img src="../static/assets/middle-panel/plus.svg" alt="">
+                            </div>
+                        </div>
+
+                        <!-- Post Description -->
+                        <div class="info-box">
+                            <textarea placeholder="Post description..." id="description" name="description" rows="4" cols="50"></textarea>
+                        </div>
+
+                        <!-- Post Category -->
+                        <div class="info-box">
+                            <div class="container">
+                                <div class="category sports"w>
+                                    {{.CatName1}}
+                                    <input type="checkbox" style="display:inline;" name="chkbox1" id="chkbox1" onclick="getChkBox1Value()" value="Movies"><span></span>
+                                </div>
+                                <div class="category food">
+                                    {{.CatName2}}
+                                    <input type="checkbox" style="display:inline" name="chkbox2" id="chkbox2" onclick="getChkBox2Value()" value="Food"><span></span>
+                                </div>
+                                <div class="category technology">
+                                    {{.CatName3}}
+                                    <input type="checkbox" style="display:inline" name="chkbox3" id="chkbox3" onclick="getChkBox3Value()" value="Technology"><span></span>
+                                </div>
+                                <div class="category travel">
+                                    {{.CatName4}}
+                                    <input type="checkbox" style="display:inline" name="chkbox4" id="chkbox4" onclick="getChkBox4Value()" value="Games"><span></span>
+                                </div>
+                                <div class="category miscellaneous">
+                                    {{.CatName5}}
+                                    <input type="checkbox" style="display:inline" name="chkbox5" id="chkbox5" onclick="getChkBox5Value()" value="Miscellaneous"><span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Create Post -->
+                        <div class="info-box">
+                            <input type="submit" value="Create Post" title="Click here to submit your Post !" alt="Submit Post button">
+                            <img src="../static/assets/middle-panel/tick.svg" title="Click here to submit your Post !" alt="Submit Post button">
+                        </div>
+                    
+                    </form>
+                    </div>
+
+                    <div class="posts-wrapper">
+                        <!-- Post 1 -->
+                        <div class="posts">
+                            <div class="post">
+                                <!-- title-wrapper centers post-title -->
+                                <div class="title-wrapper">
+                                    <post-title>{{.PostTitle1}}</post-title>
+                                </div>
+    
+                                <div class="author-category-wrapper">
+                                    <!-- profile pic, username, post timestamp -->
+                                    <div class="user-info">
+                                        <img src="../static/assets/middle-panel/user-icon.png" alt="">
+                                        <div class="username-date">
+                                            <user-title>{{.PostUserNam1}}</user-title>
+                                            <post-date-title>{{.PostAgoTim1}}</post-date-title>
+                                        </div>
+                                    </div>
+    
+                                    <!-- this centers each category -->
+                                    <div class="categories">
+                                        {{if .Post1Cat1}}
+                                        <div class="category food">{{.Post1Cat1}}</div>
+                                        {{if .Post1Cat2}}
+                                        <div class="category technology">{{.Post1Cat2}}</div>
+                                        {{if .Post1Cat3}}
+                                        <div class="category miscellaneous">{{.Post1Cat3}}</div>
+                                        {{end}}
+                                        {{end}}
+                                        {{end}}
+                                    </div>
+                                </div>
+                                
+                                <div class="body">
+                                    <post-text>
+                                        {{.PostDescrptn1}}
+                                    </post-text>
+                                </div>
+    
+                                <div class="interactions">
+                                    <!-- thumbs up - no of Likes -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/thumbs-up.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post1Likes}}</interaction-count>
+                                    </div>
+                                    <!-- thumbs down - no of DisLikes -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/thumbs-down.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post1DisLks}}</interaction-count>
+                                    </div>
+                                    <!-- number of comments -->
+                                    <div class="interaction-wrapper">
+                                        <button onclick="myFunction()" class="toggle-comments">
+                                            <div class="btn-dashboard">
+                                                <a href="#">
+                                                    <img src="../static/assets/middle-panel/comments.svg" alt="">
+                                                </a>
+                                            </div>
+                                        </button>
+                                        <interaction-count>{{.Post1NumComents}}</interaction-count>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Post 1 Comments -->
+                            <div id="comments">
+                                <div class="title">Comments</div>
+
+                                <div class="create-comment">
+                                    <input type="text" name="comment" placeholder="Post a comment...">
+                                    <input type="submit" value="Post Comment">
+                                </div>
+
+                                <div class="comments-wrapper">
+                                    <!-- Comment 1 -->
+                                    <div class="comment">
+                                        <div class="user-info">
+                                            <img src="../static/assets/middle-panel/user-icon.png" alt="">
+                                            <div class="username-date">
+                                                <user-title>Anonymous</user-title>
+                                                <post-date-title>1 day ago</post-date-title>
+                                            </div>
+                                            <img src="../static/assets/middle-panel/arrow.svg" alt="">
+                                        </div>
+                                        <div class="comment-wrapper">
+                                            <div class="comment-text">“This is an anonymous comment posted by a user on the forum.”</div>
+                                            <div class="interactions">
+                                                <!-- Comment Likes -->
+                                                <div class="interaction-wrapper">
+                                                    <div class="btn-dashboard">
+                                                        <a href="#">
+                                                            <img src="../static/assets/middle-panel/thumbs-up.svg" width="28px" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <interaction-count>{{.Post1Likes}}</interaction-count>
+                                                </div>
+                                                <!-- Comment Dislikes -->
+                                                <div class="interaction-wrapper">
+                                                    <div class="btn-dashboard">
+                                                        <a href="#">
+                                                            <img src="../static/assets/middle-panel/thumbs-down.svg" width="28px" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <interaction-count>{{.Post1DisLks}}</interaction-count>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Comment 1 -->
+                                    <div class="comment">
+                                        <div class="user-info">
+                                            <img src="../static/assets/middle-panel/user-icon.png" alt="">
+                                            <div class="username-date">
+                                                <user-title>Anonymous</user-title>
+                                                <post-date-title>1 day ago</post-date-title>
+                                            </div>
+                                            <img src="../static/assets/middle-panel/arrow.svg" alt="">
+                                        </div>
+                                        <div class="comment-wrapper">
+                                            <div class="comment-text">“Awesome project management tool! Greatly help communication and follow-up/tracking! You should definitely use this!”</div>
+                                            <div class="interactions">
+                                                <!-- Comment Likes -->
+                                                <div class="interaction-wrapper">
+                                                    <div class="btn-dashboard">
+                                                        <a href="#">
+                                                            <img src="../static/assets/middle-panel/thumbs-up.svg" width="28px" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <interaction-count>{{.Post1Likes}}</interaction-count>
+                                                </div>
+                                                <!-- Comment Dislikes -->
+                                                <div class="interaction-wrapper">
+                                                    <div class="btn-dashboard">
+                                                        <a href="#">
+                                                            <img src="../static/assets/middle-panel/thumbs-down.svg" width="28px" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <interaction-count>{{.Post1DisLks}}</interaction-count>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Comment 1 -->
+                                    <div class="comment">
+                                        <div class="user-info">
+                                            <img src="../static/assets/middle-panel/user-icon.png" alt="">
+                                            <div class="username-date">
+                                                <user-title>Anonymous</user-title>
+                                                <post-date-title>1 day ago</post-date-title>
+                                            </div>
+                                            <img src="../static/assets/middle-panel/arrow.svg" alt="">
+                                        </div>
+                                        <div class="comment-wrapper">
+                                            <div class="comment-text">“Awesome project management tool! Greatly help communication and follow-up/tracking! You should definitely use this!”</div>
+                                            <div class="interactions">
+                                                <!-- Comment Likes -->
+                                                <div class="interaction-wrapper">
+                                                    <div class="btn-dashboard">
+                                                        <a href="#">
+                                                            <img src="../static/assets/middle-panel/thumbs-up.svg" width="28px" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <interaction-count>{{.Post1Likes}}</interaction-count>
+                                                </div>
+                                                <!-- Comment Dislikes -->
+                                                <div class="interaction-wrapper">
+                                                    <div class="btn-dashboard">
+                                                        <a href="#">
+                                                            <img src="../static/assets/middle-panel/thumbs-down.svg" width="28px" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <interaction-count>{{.Post1DisLks}}</interaction-count>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Comment 1 -->
+                                    <div class="comment">
+                                        <div class="user-info">
+                                            <img src="../static/assets/middle-panel/user-icon.png" alt="">
+                                            <div class="username-date">
+                                                <user-title>Anonymous</user-title>
+                                                <post-date-title>1 day ago</post-date-title>
+                                            </div>
+                                            <img src="../static/assets/middle-panel/arrow.svg" alt="">
+                                        </div>
+                                        <div class="comment-wrapper">
+                                            <div class="comment-text">“Awesome ajgjg akagi 2fak 39aja goaakg kakakg akka gakak akg akk gkproject management tool! Greatly help communication and follow-up/tracking! You should definitely use this!”</div>
+                                            <div class="interactions">
+                                                <!-- Comment Likes -->
+                                                <div class="interaction-wrapper">
+                                                    <div class="btn-dashboard">
+                                                        <a href="#">
+                                                            <img src="../static/assets/middle-panel/thumbs-up.svg" width="28px" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <interaction-count>{{.Post1Likes}}</interaction-count>
+                                                </div>
+                                                <!-- Comment Dislikes -->
+                                                <div class="interaction-wrapper">
+                                                    <div class="btn-dashboard">
+                                                        <a href="#">
+                                                            <img src="../static/assets/middle-panel/thumbs-down.svg" width="28px" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <interaction-count>{{.Post1DisLks}}</interaction-count>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+
+                        <!-- Post 2 -->
+                        <div class="posts">
+                            <div class="post">
+                                <!-- title-wrapper centers post-title -->
+                                <div class="title-wrapper">
+                                    <post-title>{{.PostTitle2}}</post-title>
+                                </div>
+    
+                                <div class="author-category-wrapper">
+                                    <!-- profile pic, username, post timestamp -->
+                                    <div class="user-info">
+                                        <img src="../static/assets/middle-panel/user-icon.png" alt="">
+    
+                                        <div class="username-date">
+                                            <user-title>{{.PostUserNam2}}</user-title>
+                                            <post-date-title>{{.PostAgoTim2}}</post-date-title>
+                                        </div>
+                                    </div>
+    
+                                    <!-- this centers each category -->
+                                    <div class="categories">
+                                        {{if .Post2Cat1}}
+                                        <div class="category food">{{.Post2Cat1}}</div>
+                                        {{if .Post2Cat2}}
+                                        <div class="category technology">{{.Post2Cat2}}</div>
+                                        {{if .Post2Cat3}}
+                                        <div class="category miscellaneous">{{.Post2Cat3}}</div>
+                                        {{end}}
+                                        {{end}}
+                                        {{end}}
+                                    </div>
+    
+                                </div>
+
+                                <div class="body">
+                                    <post-text>
+                                        {{.PostDescrptn2}}
+                                    </post-text>
+                                </div>
+    
+                                <div class="interactions">
+                                    <!-- thumbs up -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/thumbs-up.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post2Likes}}</interaction-count>
+                                    </div>
+                                    <!-- thumbs down -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/thumbs-down.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post2DisLks}}</interaction-count>
+                                    </div>
+                                    <!-- comments -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/comments.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post2NumComents}}</interaction-count>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post 3 -->
+                        <div class="posts">
+                            <div class="post">
+                                <!-- title-wrapper centers post-title -->
+                                <div class="title-wrapper">
+                                    <post-title>{{.PostTitle3}}</post-title>
+                                </div>
+    
+                                <div class="author-category-wrapper">
+                                    <!-- profile pic, username, post timestamp -->
+                                    <div class="user-info">
+                                        <img src="../static/assets/middle-panel/user-icon.png" alt="">
+    
+                                        <div class="username-date">
+                                            <user-title>{{.PostUserNam3}}</user-title>
+                                            <post-date-title>{{.PostAgoTim3}}</post-date-title>
+                                        </div>
+                                    </div>
+    
+                                    <!-- this centers each category -->
+                                    <div class="categories">
+                                        {{if .Post3Cat1}}
+                                        <div class="category sports">{{.Post3Cat1}}</div>
+                                        {{if .Post3Cat2}}
+                                        <div class="category technology">{{.Post3Cat2}}</div>
+                                        {{if .Post3Cat3}}
+                                        <div class="category miscellaneous">{{.Post3Cat3}}</div>
+                                        {{end}}
+                                        {{end}}
+                                        {{end}}
+                                    </div>
+    
+                                </div>
+                                
+                                <div class="body">
+                                    <post-text>
+                                        {{.PostDescrptn3}}
+                                    </post-text>
+                                </div>
+    
+                                <div class="interactions">
+                                    <!-- thumbs up -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/thumbs-up.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post3Likes}}</interaction-count>
+                                    </div>
+                                    <!-- thumbs down -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/thumbs-down.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post3DisLks}}</interaction-count>
+                                    </div>
+                                    <!-- comments -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/comments.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post3NumComents}}</interaction-count>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post 4 -->
+                        <div class="posts">
+                            <div class="post">
+                                <!-- title-wrapper centers post-title -->
+                                <div class="title-wrapper">
+                                    <post-title>{{.PostTitle4}}</post-title>
+                                </div>
+    
+                                <div class="author-category-wrapper">
+                                    <!-- profile pic, username, post timestamp -->
+                                    <div class="user-info">
+                                        <img src="../static/assets/middle-panel/user-icon.png" alt="">
+    
+                                        <div class="username-date">
+                                            <user-title>{{.PostUserNam4}}</user-title>
+                                            <post-date-title>{{.PostAgoTim4}}</post-date-title>
+                                        </div>
+                                    </div>
+
+                                    <!-- this centers each category -->
+                                    <div class="categories">
+                                        {{if .Post4Cat1}}
+                                        <div class="category sports">{{.Post4Cat1}}</div>
+                                        {{if .Post4Cat2}}
+                                        <div class="category technology">{{.Post4Cat2}}</div>
+                                        {{if .Post4Cat3}}
+                                        <div class="category miscellaneous">{{.Post4Cat3}}</div>
+                                        {{end}}
+                                        {{end}}
+                                        {{end}}
+                                    </div>
+    
+                                </div>
+                                
+                                <div class="body">
+                                    <post-text>
+                                        {{.PostDescrptn4}}
+                                    </post-text>
+                                </div>
+    
+                                <div class="interactions">
+                                    <!-- thumbs up -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/thumbs-up.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post4Likes}}</interaction-count>
+                                    </div>
+                                    <!-- thumbs down -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/thumbs-down.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post4DisLks}}</interaction-count>
+                                    </div>
+                                    <!-- comments -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/comments.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post4NumComents}}</interaction-count>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Post 5 -->
+                        <div class="posts">
+                            <div class="post">
+                                <!-- title-wrapper centers post-title -->
+                                <div class="title-wrapper">
+                                    <post-title>{{.PostTitle5}}</post-title>
+                                </div>
+    
+                                <div class="author-category-wrapper">
+                                    <!-- profile pic, username, post timestamp -->
+                                    <div class="user-info">
+                                        <img src="../static/assets/middle-panel/user-icon.png" alt="">
+    
+                                        <div class="username-date">
+                                            <user-title>{{.PostUserNam5}}</user-title>
+                                            <post-date-title>{{.PostAgoTim5}}</post-date-title>
+                                        </div>
+                                    </div>
+
+                                    <!-- this centers each category -->
+                                    <div class="categories">
+                                        {{if .Post5Cat1}}
+                                        <div class="category sports">{{.Post5Cat1}}</div>
+                                        {{if .Post5Cat2}}
+                                        <div class="category technology">{{.Post5Cat2}}</div>
+                                        {{if .Post5Cat3}}
+                                        <div class="category miscellaneous">{{.Post5Cat3}}</div>
+                                        {{end}}
+                                        {{end}}
+                                        {{end}}
+                                    </div>
+    
+                                </div>
+                                
+                                <div class="body">
+                                    <post-text>
+                                        {{.PostDescrptn5}}
+                                    </post-text>
+                                </div>
+    
+                                <div class="interactions">
+                                    <!-- thumbs up -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/thumbs-up.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post5Likes}}</interaction-count>
+                                    </div>
+                                    <!-- thumbs down -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/thumbs-down.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post5DisLks}}</interaction-count>
+                                    </div>
+                                    <!-- comments -->
+                                    <div class="interaction-wrapper">
+                                        <div class="btn-dashboard">
+                                            <a href="#">
+                                                <img src="../static/assets/middle-panel/comments.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <interaction-count>{{.Post5NumComents}}</interaction-count>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT PANEL -->
+                <div class="right-panel">
+                    <div class="btn-text">Registered Users</div>
+                    <div class="registered-users">
+                        <div class="user">
+                            <img src="../static/assets/right-panel/user-icon.png" alt="User Icon Image">
+                            <user-title-right>{{.UserName1}}</user-title-right>
+                        </div>
+                        <div class="user">
+                            <img src="../static/assets/right-panel/user-icon.png" alt="">
+                            <user-title-right>{{.UserName2}}</user-title-right>
+                        </div>
+                        <div class="user">
+                            <img src="../static/assets/right-panel/user-icon.png" alt="">
+                            <user-title-right>{{.UserName3}}</user-title-right>
+                        </div>
+                        <div class="user">
+                            <img src="../static/assets/right-panel/user-icon.png" alt="">
+                            <user-title-right>{{.UserName4}}</user-title-right>
+                        </div>
+                        <div class="user">
+                            <img src="../static/assets/right-panel/user-icon.png" alt="">
+                            <user-title-right>{{.UserName5}}</user-title-right>
+                        </div>
+                        <div class="user">
+                            <img src="../static/assets/right-panel/user-icon.png" alt="">
+                            <user-title-right>{{.UserName6}}</user-title-right>
+                        </div>
+                        <div class="user">
+                            <img src="../static/assets/right-panel/user-icon.png" alt="">
+                            <user-title-right>{{.UserName7}}</user-title-right>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

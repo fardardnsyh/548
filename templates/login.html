@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <script src="../static/js/chkBox.js"></script> 
+    <link rel="shortcut icon" href="../static/assets/favicon.png" type="image/x-icon">
+    <title>Forum | Login</title>
+</head>
+<body>
+    <!-- the wrapper is to ensure everything is centered inside (flex) -->
+    <div class="wrapper">
+        <!-- seperated into four sections: navbar, left panel, mid section & right panel  -->
+        <div class="content">
+
+            <!-- NAVBAR -->
+            <!-- this is to ensure everything is centered inside -->
+            <div class="nav-wrapper">
+                <!-- seperated into two sections: logo (left) & button (right) -->
+                <div class="nav-content">
+                    <!-- this will be on the left side -->
+                    <div class="logo">
+                        <a href="/">
+                            <img src="../static/assets/navbar/logo.svg">
+                        </a>
+                    </div>
+                    <div class="info-box"><info-text>{{.LogInErrMsg}}</info-text></div>
+                    <!-- this will be on the right side -->
+                    <div class="btn-login">
+                        <a href="register">
+                            <img src="../static/assets/navbar/btn-register.svg" title="Click here to Sign In" alt="Image of a Login (Sign In) button">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="background">
+                <div class="auth-left">
+                    <img src="../static/assets/auth/discussion.svg" alt="people having a discussion">
+                    <h3>Ready to Join<br>The Discussion?</h3>
+                    <p>Before you get started,<br>you’ll need to login.</p>
+                </div>
+                <div class="auth-right">
+                    <img src="../static/assets/auth/fingerprint.svg" alt="">
+                    <h1>Authentication</h1>
+                    <h2>Let's get you logged in.</h2>
+
+                    <form action="userLogin">
+                        <input type="text" name="username" placeholder="Username/Email"></input>
+                        <input type="password" name="password" placeholder="Password"></input>
+                        <input type="submit" name="Login" placeholder="Login"></input>
+                    </form>
+                    <p>Don’t have an account yet?</p>
+                    <a href="register">Sign Up</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

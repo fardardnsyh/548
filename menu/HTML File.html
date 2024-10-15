@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#myDIV {
+  width: 30%;
+  padding: 20px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+div {background-color: green;}
+div a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  padding: 15px;
+  display:inline-block;
+}
+ul {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+ul li {display: inline-block;}
+ul li:hover {background: #555;}
+ul li:hover ul {display: block;}
+ul li ul {
+  position: absolute;
+  width: 200px;
+  display: none;
+}
+ul li ul li {
+  background: rgb(167, 18, 18);
+  display: block;
+}
+ul li ul li a {display:block !important;}
+ul li ul li:hover {background: #666;}
+</style>
+</head>
+<body onload="myFunction()">
+<div>
+<ul>
+<li>
+  <a href="#" onclick="myFunction()">Login</a>
+  </ul>
+</li>
+  <ul>
+    <li>
+      <a href="#">Dropdown Link</a>
+      <ul>
+        <li><a href="#">Link 1</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<script>
+  function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+  </script>
+<div id="myDIV">
+  <form method="POST">
+    <label for="fname">Username:</label>
+    <input type="text" id="fname" name="userName"><br>
+    <label for="lname">Password:</label>
+    <input type="password" id="pass" name="password" minlength="8" required><br>
+    <input type="submit" value="Submit">
+  </form>
+  <form action="/register.html">
+    <input type="submit" value="Register">
+  </form> 
+</div>
+</body>
+</html>

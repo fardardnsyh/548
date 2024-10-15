@@ -1,0 +1,184 @@
+The FORUM System Project → Pseudo Code (Top Down Design Methodology) !
+_________________________________________________________________________________
+
+• The Forum Website System Project;
+filename: Pseudo-Code.txt; author: Kamal H. Zada; Date: 26 april 2022;
+
+• The Forum System consists of 4 source code modules (5 files):
+main.c, system.c, auth.c, trans.c and Pseudo-Code.txt (documentation)!
+
+• Microsoft Visual Studio Code → Ms C/C++.
+Microsoft Visual Studio Code → Ms C/C++ → Install onto my PC:
+
+• Microsoft C/C++ IntelliSense, debugging, and code browsing.
+The C/C++ extension adds language support for C/C++ to Visual Studio Code, including features such as IntelliSense and debugging.
+
+• Overview and tutorials
+C/C++ extension overview: https://code.visualstudio.com/docs/languages/cpp
+
+• C/C++ extension tutorials per compiler and platform
+Microsoft C++ compiler (MSVC) on Windows: https://code.visualstudio.com/docs/cpp/config-msvc
+GCC and Mingw-w64 on Windows: https://code.visualstudio.com/docs/cpp/config-mingw
+GCC on Windows Subsystem for Linux (WSL) →  GCC on Linux: https://code.visualstudio.com/docs/cpp/config-linux
+
+• Location of C package (stdio.h, etc.): Other Locations → Usr → Include
+
+• Microsoft Visual Studio Code → SQLite.
+• Ms SQLite → Download and Install SQLite onto my PC: Explore and query SQLite databases.
+Features → Query SQLite databases and view results in a table (also supports dot commands like .tables, .schema, ecc).
+1. SQLite link: https://www.sqlite.org/index.html
+
+2. SQLite Download Page → DownLoad: Source Code (C source code as an amalgamation, version 3.38.2): sqlite-amalgamation-3370200.zip (2.42 MiB)
+The amalgamation source code, the command-line shell source code, configure/make scripts for unix, and a Makefile.msc for Windows.
+AND
+Documentation: sqlite-doc-3380200.zip (10.13 MiB) → Documentation as a bundle of static HTML files.
+EXTRACT both onto /SQLite
+
+3. Compiling The Command-Line Interface:
+A build of the command-line interface requires three source files:
+  • sqlite3.c: The SQLite amalgamation source file
+  • sqlite3.h: The header files that accompanies sqlite3.c and defines the C-language interfaces to SQLite.
+  • shell.c: The command-line interface program itself.
+    This is the C source code file that contains the definition of the main() routine and the loop that prompts for user input and passes that input into the SQLite database engine for processing.
+
+• On Unix systems the Compile & Link command (to create the CLI) typically looks something like this:
+student@ubuntu:~/forum/dataB$ cc shell.c sqlite3.c -lpthread -ldl -lm -o sqlite3
+
+4. student@ubuntu:$cd forum/dataB$ ./sqlite3
+SQLite version 3.38.0 2022-01-11 23:28:12
+Enter ".help" for usage hints.
+sqlite>.open ForumDB.db        !Opens an Existing Database
+sqlite>.databases              !display (List) names and files of attached databases
+sqlite>.read CrtTables.sql     !Executes SQL commands from SqlCrtTab1.sql to Create all 11 of the Tables
+sqlite>.tables                 !display Tables
+sqlite>.schema Users           !display definition of the Users Table
+sqlite>.save ForumDB.db        !Saves Forum Database
+sqlite>.exit
+
+• More SQLite docs (on PC) → Command Line Shell for SQLite (cli.html):
+file:///home/student/SQLite/sqlite-doc-3370200/cli.html#getting_started
+
+• SQLite doc (on PC) → An Introduction To The SQLite C/C++ Interface:
+file:///home/student/SQLite/sqlite-doc-3370200/cintro.html
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+• Entry point → File: main.c; Function main.c;
+
+• The Program consists of the following Global variables:
+
+• Function Main → this function is the entry point for the Application;
+It calls function: initMenu to display the Initial Menu,
+which allows the User to select from the following 3 options:
+option 1 → Login; option 2 → Register and Account Information; option 3 → Exit.
+
+Next main calls mainMenu to display the Main Menu,
+which allows the User to select from the following 8 options:
+option 1 → Create a new account (Registration → part 2);
+option 2 → Update information of account; option 3 → Check accounts;
+option 4 → Check list of owned account; option 5 → Make Transaction;
+option 6 → Remove existing account; option 7 → Transfer ownership; option 8 → Exit.
+
+• Function Login Menu → this function allows the User to log into (sign into) the System.
+the Function Login Menu is in the auth.c file.
+
+• Function Init Menu → this function allows the User to log into (sign into) the System,
+it calls Login Menu which obtains the User name and password from the User;
+next it calls Get Password to obtain the Password from the Users file,
+next it checks that the User has entered the correct password,
+if the User has entered the correct, he/she is logged onto the System and has full access to all Functionality,
+otherwise the Application displays: Wrong password!! or User Name and then exits.
+
+• Function createNewAcc (Create New Account) → this function Creates New Account for a User that has just been Registered on the System,
+The User line (users.txt) has already been created (by the Register New User function),
+the User info is passed into this function as the parameter: u.
+1. Obtain the Account information from the User.
+2. Does some Error checking.
+   A Single User has a unique User ID. Check the Records file for a duplicate User
+   (a Records line (records.txt) with the same User ID)
+3. Saves the Account info onto the Records files.
+
+Next Also Access the SQL Database → Transactions Table to see if this User has made any Transactions (Deposit/Withdrawal).
+Connect to the SQL Database: "data/BankDB.db" (Database filename).
+Format the SQL Select statement →  Select * From Transactions Where (AccountNo = <Account no to check>);
+Execute the SQL statement to obtain the Rows in the Transactions SQL Table.
+Display the details of all of the Transactions for this Account.
+
+SQL Database consists of the following Tables:
+Users, Passwords, Posts;
+
+
+_________________________________________________________________________________________________________________________________________________________________________________________________
+• The FORUM Website System Project → Program Specification:
+
+• Objectives:
+This project consists in creating a web forum that allows:
+     communication between users; associating categories to posts; liking and disliking posts and comments; filtering posts.
+
+• SQLite:
+In order to store the data in your forum (like users, posts, comments, etc.) you will use the database library SQLite.
+
+SQLite is a popular choice as an embedded database software for local/client storage in application software such as web browsers.
+It enables you to create a database as well as controlling it by using queries.
+
+To structure your database and to achieve better performance we highly advise you to take a look at the entity relationship diagram and build one based on your own database.
+Entity Relationship: https://www.smartdraw.com/entity-relationship-diagram
+You must use at least one SELECT, one CREATE and one INSERT queries.
+
+To know more about SQLite you can check the SQLite page: https://www.sqlite.org/index.html
+
+• Authentication
+In this segment the client must be able to register as a new user on the forum, by inputting their credentials.
+You also have to create a login session to access the forum and be able to add posts and comments.
+
+You should use cookies to allow each user to have only one opened session.
+Each of this sessions must contain an expiration date.
+It is up to you to decide how long the cookie stays "alive". The use of UUID is a Bonus task.
+
+Instructions for user registration:
+1. Must ask for email; If the email is already taken return an error response.
+2. Must ask for username;
+3. Must ask for password; The password must be encrypted when stored onto the SQL database (this is a Bonus task).
+
+The forum must be able to check if the email provided is present in the database and if all credentials are correct.
+It will check if the password is the same with the one provided and, if the password is not the same, it will return an error response.
+
+• Communication
+In order for users to communicate between each other, they will have to be able to create posts and comments.
+1. Only registered users will be able to create posts and comments.
+2. When registered users are creating a post they can associate one or more categories to it; The implementation and choice of the categories is up to you.
+3. The posts and comments should be visible to all users (registered or not).
+4. Non-registered users will only be able to see posts and comments.
+
+• Likes and Dislikes
+Only registered users will be able to like or dislike posts and comments.
+The number of likes and dislikes should be visible by all users (registered or not).
+
+• Filter
+You need to implement a filter mechanism, that will allow users to filter the displayed posts by:
+categories; created posts; liked posts.
+You can look at filtering by categories as subforums. A subforum is a section of an online forum dedicated to a specific topic.
+Note: that the last two are only available for registered users and must refer to the logged in user.
+
+• Docker
+For the forum project you must use Docker. You can read about docker basics in the ascii-art-web-dockerize subject.
+
+• Instructions
+You must use SQLite.
+You must handle website errors, HTTP status.
+You must handle all sort of technical errors.
+The code must respect the good practices.
+It is recommended to have test files for unit testing.
+
+• Allowed packages
+All standard Go packages are allowed.
+sqlite3: https://github.com/mattn/go-sqlite3
+bcrypt: https://pkg.go.dev/golang.org/x/crypto/bcrypt
+UUID: https://github.com/satori/go.uuid
+
+• This project will help you learn about:
+The basics of web: HTML, HTTP, Sessions and cookies;
+Using and setting up Docker:
+Containerizing an application; Compatibility/Dependency; Creating images.
+SQL language: Manipulation of databases and
+The basics of encryption.
+_____________________________________________________________________________________________________________________________________________________________________________________________
+

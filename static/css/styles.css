@@ -1,0 +1,916 @@
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: linear-gradient(180deg, #D0E1FF 0%, rgba(219, 209, 255, 0.684376) 44.58%, #FFF2FF 100%);
+    font-family: 'Sunflower', sans-serif;
+}
+
+/* general styling */
+
+.btn-text {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: rgba(15, 35, 71, 0.4);
+}
+
+.category a {
+    /* removes underline */
+    text-decoration: none;
+    text-align: center;
+    font-weight: 300;
+    font-size: 16.2px;
+    line-height: 20px;
+    color: rgba(15, 35, 71, 0.45);
+}
+
+.category {
+    /* center text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* text */
+    text-align: center;
+    font-weight: 300;
+    font-size: 16.2px;
+    line-height: 20px;
+    color: rgba(15, 35, 71, 0.45);
+
+    /* button */
+    box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.01);
+    border-radius: 9px;
+    padding: 10px;
+    margin: 3px 4px 3px 4px;
+    cursor: pointer;
+}
+
+.category.movies {
+    width: 80px;
+    height: 32px;
+    background: rgba(207, 255, 191, 0.3);
+}
+
+.category.food {
+    width: 70px;
+    height: 32px;
+    background: rgba(255, 191, 249, 0.3);
+}
+
+.left-panel .category.comedy {
+    width: 83px;
+    height: 32px;
+    background: rgba(198, 191, 255, 0.3);
+}
+
+.category.technology {
+    width: 105px;
+    height: 32px;
+    background: rgba(191, 243, 255, 0.3);
+}
+
+.category.miscellaneous {
+    width: 125px;
+    height: 32px;
+    background: rgba(198, 191, 255, 0.3);
+}
+
+.category.games {
+    width: 75px;
+    height: 32px;
+    background: rgba(255, 252, 191, 0.3);
+}
+
+.welcome-text {
+    /* center text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* text */
+    text-align: center;
+    font-weight: 300;
+    font-size: 16.2px;
+    line-height: 20px;
+    color: rgba(15, 35, 71, 0.45);
+
+    /* button */
+    box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.01);
+    border-radius: 9px;
+    padding: 15px 20px 15px 20px;
+    margin: 3px 4px 3px 4px;
+
+    height: 32px;
+    background: rgba(198, 191, 255, 0.3);
+}
+
+info-text {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 19px;
+    color: rgba(255, 0, 0, 0.9);
+}
+
+user-title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: rgba(15, 35, 71, 0.41);
+}
+
+post-date-title {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(15, 35, 71, 0.25);
+}
+
+user-title-right {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: rgba(15, 35, 71, 0.34);
+}
+
+post-title {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 28px;
+    color: rgba(15, 35, 71, 0.35);
+    text-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+post-text {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    color: rgba(15, 35, 71, 0.5);
+}
+
+interaction-count {
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(15, 35, 71, 0.35);
+}
+
+
+/* specific styling */
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* to center vertically */
+    height: 100%;
+}
+
+.wrapper .content {
+    width: 1240px;
+    height: 844px;
+}
+
+/* allows us to center nav-content's items */
+.wrapper .content .nav-wrapper {
+    display: flex;
+    justify-content: center;
+
+    width: 1240px;
+    height: 72px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
+    border-radius: 21px;
+
+    /* to create a connected look */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.wrapper .content .nav-wrapper .nav-content {
+    display: flex;
+    position: relative;
+    /* ensures logo is on left / btn on right */
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    /* creates space either side of navbar */
+    max-width: 1175px;
+    /* only top half of div has rounded borders - this helps the content look more centered */
+    padding-top: 6px;
+}
+
+.wrapper .content .nav-wrapper .nav-content .btn-login a img {
+    height: 30px;
+}
+
+.sections {
+    display: flex;
+    justify-content: space-between;
+
+    background: rgba(239, 245, 247, 0.6);
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.1);
+    /* border-radius: 20px; */
+}
+
+.left-panel {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 297px;
+    height: 772px;
+
+    background: rgba(239, 245, 247, 0.1);
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    /* to create a tidier feel */
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    /* page positioning */
+    padding-left: 61px;
+    padding-top: 34px;
+}
+
+.left-panel .btn {
+    display: flex;
+    align-items: center;
+    margin: 3.5px 0 3.5px 0;
+}
+
+/* filter by posts btn */
+.left-panel .btn:nth-child(2) {
+    margin-top: 15px;
+}
+
+.left-panel .btn-dashboard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+    margin-right: 15px;
+
+    background: rgba(239, 245, 247, 0.5);
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.05);
+    border-radius: 9px;
+}
+
+.left-panel .btn-dashboard a {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 19px;
+
+    color: rgba(15, 35, 71, 0.4);
+}
+
+.left-panel .categories {
+    /* format buttons horizonally */
+    display: flex;
+    /* to break onto new line */
+    width: 200px;
+    flex-wrap: wrap;
+}
+
+/* margin for each item */
+.left-panel .btn.dashboard {
+    margin: 10px 0 10px 0;
+}
+
+.left-panel .filter-posts {
+    margin: 40px 0 15px 0;
+}
+
+.left-panel .categories {
+    margin: 1px 0 1px 0;
+}
+
+
+webkit-scrollbar {
+    display: none;
+  }
+
+
+.mid-section {
+    width: 546px;
+    height: 772px;
+
+    background: rgba(239, 245, 247, 0.1);
+    overflow: scroll;
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.mid-section::-webkit-scrollbar {
+    display: none;
+}
+
+.mid-section .info-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    height: 100px;
+    border-radius: 9px;
+}
+
+/* when post form is removed, content is displayed accurately */
+.mid-section .info-wrapper .info-box:first-of-type {
+    margin-top: 40px;
+}
+
+.mid-section .info-wrapper .info-box:nth-child(2) {
+    width: 546px;
+    height: 138px;
+
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.05);
+    border-radius: 9px;
+
+    display: flex;
+}
+
+.mid-section .info-wrapper .info-box:nth-child(2) textarea {
+    font-family: 'Sunflower';
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 19px;
+    color: #818181;
+
+    height: 110px;
+    width: 504px;
+    background: transparent;
+    border: none;
+    resize: none;
+    outline: none
+}
+
+/* categories */
+.mid-section .info-wrapper .info-box:nth-child(3) .container {
+    display: flex;
+    /* hide input */
+    
+}
+
+.mid-section .info-wrapper .info-box:nth-child(3) .container input {
+    /* hide input */
+    display: none;
+}
+
+.mid-section .info-wrapper .info-box:nth-child(3) .container .category {
+    margin: 6px;
+}
+
+.mid-section .info-wrapper .info-box:nth-child(4) {
+    color: #fff;
+    background: rgba(85, 71, 201, 0.2);
+    width: 135px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* create post btn */
+.mid-section .info-wrapper .info-box:nth-child(4) input {
+    cursor: pointer;
+    color: #fff;
+    margin-right: 6px;
+    width: unset;
+    height: unset;
+}
+
+/* create post img */
+.mid-section .info-wrapper .info-box:nth-child(4) img {
+    width: 20px;
+}
+
+.mid-section .info-wrapper .info-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 7px;
+    width: 546px;
+    height: 52px;
+
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.01);
+    border-radius: 9px;
+}
+
+.mid-section .info-wrapper .info-box info-text a {
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 19px;
+    color: rgb(162, 151, 240);
+}
+
+.mid-section .info-wrapper .info-box input {
+    width: 460px;
+    height: 25px;
+
+    background: transparent;
+    border: none;
+    /* box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.05); */
+    outline: none;
+
+    font-family: 'Sunflower';
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 19px;
+    color: #818181;
+
+    margin-right: 10px;
+}
+
+.mid-section .info-wrapper .info-box .plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 35px;
+    height: 35px;
+
+    background: rgba(85, 71, 201, 0.25);
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.05);
+    border-radius: 9px;
+}
+
+
+.mid-section .info-wrapper .info-box .category.technology input:checked + span{background-color: #F75A1B;}
+.mid-section .info-wrapper .info-box .food input:checked + span{background-color: #F75A1B;}
+.mid-section .info-wrapper .info-box .comedy input:checked + span{background-color: #F75A1B;}
+.mid-section .info-wrapper .info-box .sports input:checked + span{background-color: #F75A1B;}
+.mid-section .info-wrapper .info-box .fitness input:checked + span{background-color: #F75A1B;}
+.mid-section .info-wrapper .info-box .travel input:checked + span{background-color: #F75A1B;}
+
+
+.mid-section .posts-wrapper {
+    margin-top: 300px;
+}
+
+.mid-section .posts {
+    /* centers post */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    width: 546px;
+    margin: 20px 0 20px 0;
+
+    background: rgba(255, 255, 255, 0.5);
+    /* box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.05); */
+    border-radius: 9px;
+    padding: 15px 0 5px 0;
+}
+
+.mid-section .posts .post {
+    width: 491.4px;
+}
+
+.mid-section .post .title-wrapper {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.mid-section .posts .post .author-category-wrapper {
+    /* aligns author/category divs horizontally */
+    display: flex;
+}
+
+/* aligns user icon next to user/post details */
+.mid-section .posts #elementIDA .user-info {
+    display: flex;
+    align-items: flex-end;
+
+    /* other 50% is occupied by attributed post categories div */
+    width: 50%;
+}
+
+/* aligns username on top of post date */
+.mid-section .posts .post .author-category-wrapper .user-info .username-date {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.mid-section .posts .post .author-category-wrapper .categories {
+    display: flex;
+    align-items: center;
+    /* ensures content started from right side and expands left as more divs are added */
+    justify-content: end;
+
+        /* other 50% is occupied by author/date div */
+    width: 50%;
+}
+
+.mid-section .posts .post .body {
+    margin: 15px 0 15px 0;
+    height: auto;
+    background: rgba(15, 35, 71, 0.01);
+    border-radius: 10px;
+    padding: 10px;
+    overflow: auto;
+    margin: 25px 0 25px 0;
+}
+
+.mid-section .posts .post .interactions {
+    /* aligns divs horizontally */
+    display: flex;
+    margin: 15px 0 15px 0;
+}
+
+.mid-section .posts .post .interactions .interaction-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 9px;
+}
+
+/* COMMENTS */
+
+/* hides outline on btns */
+.mid-section .posts-wrapper .posts button.toggle-comments {
+    border: none;
+    background: transparent;
+}
+
+.mid-section .posts .comments-wrapper {
+    overflow-y: auto;
+    height: 370px;
+    overflow-x: hidden;
+}
+
+.mid-section .posts #elementIDA {
+    width: 546px;
+    height: 320px;
+    margin: 20px 0 20px 0;
+    border-radius: 9px;
+    padding: 0 20px 12px 25px;
+    max-height: 440px;
+    display: none;
+}
+
+.mid-section .posts #elementIDA .comment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 170px;
+    margin-top: -40px;
+}
+
+.mid-section .posts #elementIDA .comment .comment-wrapper .interactions {
+    /* aligns buttons horizontally */
+    display: flex;
+}
+
+.mid-section .posts #elementIDA .comment .comment-wrapper {
+    margin-top: 50px;
+}
+.mid-section .posts #elementIDA .comment .comment-wrapper .comment-text {
+    background: rgba(15, 35, 71, 0.02);
+    border-radius: 10px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    color: rgba(15, 35, 71, 0.5);
+    padding: 10px;
+    width: 260px;
+    margin-bottom: 8px;
+    max-height: 100px;
+    overflow: auto;
+}
+
+.mid-section .posts #elementIDA .comment .user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 15px;
+}
+
+/* profile pic */
+.mid-section .posts #elementIDA .comment .user-info img:first-of-type {
+    margin-right: 10px;
+}
+
+/* arrow */
+.mid-section .posts #elementIDA .comment .user-info img {
+    margin-left: 12px;
+}
+
+.mid-section .posts #elementIDA .comment .user-info .username-date {
+    display: flex;
+    flex-direction: column;
+}
+
+.mid-section .posts #elementIDA .comment .comment-wrapper .interaction-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* size of each interaction btn */
+    width: 30px;
+}
+
+/* targetting like btn */
+.mid-section .posts #elementIDA .comment .comment-wrapper .interaction-wrapper:first-of-type {
+    margin-right: 10px;
+}
+
+.mid-section .posts .title {
+    display: flex;
+    margin-bottom: 10px;
+
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    color: rgba(15, 35, 71, 0.31);
+}
+
+/* CREATE A COMMENT */
+
+.mid-section .posts #elementIDA .create-comment {
+    padding-bottom: 5px;
+}
+
+.mid-section .posts #elementIDA .create-comment input[type=text] {
+    font-family: 'Sunflower';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(15, 35, 71, 0.5);
+    width: 220px;
+    height: 35px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
+    border-radius: 6px;
+    border: none;
+    margin-bottom: 8px;
+    padding-left: 10px;
+}
+
+.mid-section .posts #elementIDA .create-comment input[type=text]:focus{
+    outline: 1px solid rgba(15, 35, 71, 0.3);
+}
+
+.mid-section .posts #elementIDA .create-comment input[type=submit] {
+    margin-left: 5px;
+    cursor: pointer;
+    width: 120px;
+    height: 35px;
+    background: rgba(198, 191, 255, 0.5);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
+    border-radius: 6px;
+    font-family: 'Sunflower';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(15, 35, 71, 0.5);
+    margin-top: 5px;
+    border: none;
+}
+
+.mid-section .posts .post .interactions .btn-dashboard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.right-panel {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* this ensures content is displayed correctly */
+    flex-direction: column;
+
+    width: 291px;
+    height: 772px;
+
+    background: rgba(239, 245, 247, 0.1);
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+    /* to create a tidier feel */
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+}
+
+.right-panel .btn-text {
+    margin: 44px 0 20px 0;
+}
+
+.right-panel .registered-users {
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    height: 650px;
+}
+
+.right-panel .registered-users::-webkit-scrollbar {
+    display: none;
+}
+
+.right-panel .registered-users .user {
+    /* centers username */
+    display: flex;
+    align-items: center;
+    margin: 12px 0 12px 0;
+}
+
+.right-panel .registered-users .user user-title-right {
+    margin-left: 10px;
+}
+
+/* ========================= LOGIN STYLING ========================= */
+
+.background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1240px;
+    height: 772px;
+    background: rgba(239, 245, 247, 0.6);
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 21px;
+    border-bottom-right-radius: 21px;
+}
+
+/* left div */
+.background .auth-left {
+    width: 322px;
+    height: 404px;
+    display: flex;
+    background: rgba(198, 191, 255, 0.3);
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.05);
+    border-radius: 23px 0px 0px 23px;
+}
+
+/* right div */
+.background .auth-right {
+    width: 322px;
+    height: 404px;
+
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.05);
+    border-radius: 0px 23px 23px 0px;
+}
+
+.background .auth-left,.auth-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* centers correctly (incl navbar) */
+    margin-bottom: 72px;
+}
+
+.background .auth-left h3 {
+    font-family: 'Sunflower';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 22px;
+    color: rgba(15, 35, 71, 0.5);
+    text-align: center;
+    margin-top: 10px;
+}
+
+.background .auth-left p {
+    font-family: 'Sunflower';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: center;
+
+    color: rgba(15, 35, 71, 0.5);
+    margin-top: 5px;
+}
+
+.background .auth-right h1 {
+    font-family: 'Sunflower';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 23px;
+    line-height: 29px;
+    color: rgba(15, 35, 71, 0.6);
+    margin-top: 10px;
+}
+
+.background .auth-right h2 {
+    font-family: 'Sunflower';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 20px;
+    color: rgba(15, 35, 71, 0.4);
+    margin-top: 2px;
+}
+
+.background .auth-right form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.background .auth-right input {
+    width: 209px;
+    height: 29px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
+    border-radius: 6px;
+    border: none;
+    margin-bottom: 8px;
+}
+
+.background .auth-right input::placeholder {
+    font-family: 'Sunflower';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(15, 35, 71, 0.4);
+}
+
+.background .auth-right input {
+    font-family: 'Sunflower';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(15, 35, 71, 0.5);
+}
+
+.background .auth-right input[type="text"], input[type="password"], input[type="email"] {
+    padding-left: 10px;
+}
+
+.background .auth-right input[type="text"]:focus, input[type="password"]:focus {
+    outline: 1px solid rgba(15, 35, 71, 0.3);
+}
+
+.background .auth-right input[type="submit"] {
+    cursor: pointer;
+    width: 120px;
+    height: 25px;
+    background: rgba(198, 191, 255, 0.5);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
+    border-radius: 6px;
+
+    font-family: 'Sunflower';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(15, 35, 71, 0.5);
+    margin-top: 5px;
+}
+
+.background .auth-right p {
+    font-family: 'Sunflower';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    color: rgba(15, 35, 71, 0.4);
+    margin-top: 2px;
+}
+
+.background .auth-right a {
+    font-family: 'Sunflower';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    color: rgba(85, 69, 207, 0.6);
+    text-decoration: none;
+}
